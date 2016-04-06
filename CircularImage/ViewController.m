@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+@property (strong, nonatomic) IBOutlet UIImageView *ImgView;
 @end
 
 @implementation ViewController
@@ -22,6 +23,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self performSelector:@selector(setCircleForImage:) withObject:_ImgView afterDelay:0];
+    //[self setCircleForImage:_ImgView];
+}
+
+-(void)setCircleForImage:(UIImageView*)img
+{
+    img.layer.cornerRadius=_ImgView.frame.size.height/2.0;
+    img.clipsToBounds=YES;
+    
 }
 
 @end
